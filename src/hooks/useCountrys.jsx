@@ -1,15 +1,23 @@
-import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { isLoading, setCountrys } from '../reducers/countrysReducer';
+import { toggleAlert } from '../reducers/alertReducer';
+import { isVisibleCountrys, setCountrys } from '../reducers/countrysReducer';
 
 import { getCountrys } from '../services/country';
 
-export const useDefaultCountrys = () => {
+export const useCountrys = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  const getAllCountrys = () => {
     const res = getCountrys();
-    dispatch(isLoading(true));
+    dispatch(isVisibleCountrys(false));
+    dispatch(
+      toggleAlert({
+        type: 'loading',
+        message: 'Loading...',
+        active: true,
+      })
+    );
+
     res.then((data) => {
       const countrysElements = [];
       for (let i = 0; i < 8; i++) {
@@ -18,8 +26,12 @@ export const useDefaultCountrys = () => {
 
       console.log(data);
       // dispatch(setCountrys(data))
-      dispatch(setCountrys(countrysElements))
-      dispatch(isLoading(false));
+      dispatch(setCountrys(countrysElements));
+
+      dispatch(isVisibleCountrys(true));
+      dispatch(toggleAlert({ active: false }));
     });
-  }, []);
+  };
+
+  return { getAllCountrys };
 };

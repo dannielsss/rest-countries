@@ -1,9 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 const initialState = {
   countrys: [],
-  loading: false,
+  visibleCountrys: false,
 };
 
 export const countrysSlice = createSlice({
@@ -13,11 +12,11 @@ export const countrysSlice = createSlice({
     setCountrys: (state, action) => {
       state.countrys = action.payload;
     },
-    isLoading: (state, action) => {
-      state.loading = action.payload;
+    isVisibleCountrys: (state, action) => {
+      state.visibleCountrys = action.payload;
     }
   },
 });
 
-export const { setCountrys, isLoading } = countrysSlice.actions;
+export const { setCountrys, isVisibleCountrys } = countrysSlice.actions;
 export default countrysSlice.reducer;
