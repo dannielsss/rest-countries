@@ -18,7 +18,6 @@ function SearchCountry() {
     e.preventDefault();
 
     if (searchValue) {
-      // dispatch(isVisibleCountrys(false));
       dispatch(
         toggleAlert({
           type: 'loading',
@@ -27,24 +26,21 @@ function SearchCountry() {
         })
       );
 
-      searchCountrys(searchValue)
-        .then((data) => {
-          // dispatch(isVisibleCountrys(true));
-          dispatch(setCountrys(data));
-          dispatch(toggleAlert({ active: false }));
-        })
-        .catch((err) => {
-          if (err.response.status === 404) {
-            // dispatch(isVisibleCountrys(false));
-            dispatch(
-              toggleAlert({
-                type: 'error',
-                message: 'Not Found Country',
-                active: true,
-              })
-            );
-          }
-        });
+      try {
+        const searchContrysData = await searchCountrys(searchValue);
+        dispatch(setCountrys(searchContrysData));
+        dispatch(toggleAlert({ active: false }));
+      } catch (error) {
+        if (error.response.status === 404) {
+          dispatch(
+            toggleAlert({
+              type: 'error',
+              message: 'Not Found Country',
+              active: true,
+            })
+          );
+        }
+      }
     } else {
       getAllCountrys();
     }
