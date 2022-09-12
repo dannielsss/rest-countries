@@ -16,6 +16,8 @@ export const useDefaultCountrys = () => {
         countrysElements.push(data[i]);
       }
 
+      console.log(data);
+      // dispatch(setCountrys(data))
       dispatch(setCountrys(countrysElements))
       dispatch(isLoading(false));
     });

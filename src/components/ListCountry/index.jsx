@@ -25,7 +25,7 @@ function ListCountry() {
           name={country.name.official}
           population={country.population}
           region={country.region}
-          capital={country.capital[0]}
+          capital={country.capital}
           key={country.area}
         />
       ))}

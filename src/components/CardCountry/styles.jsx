@@ -12,6 +12,12 @@ export const CardBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  transition: 0.1s ease;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+  }
 `;
 
 export const CardImage = styled.img`
