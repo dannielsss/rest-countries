@@ -1,10 +1,20 @@
 import React from 'react';
-import { CardBox } from './styles';
+import { CardBody, CardBox, CardImage, CardTitle } from './styles';
+
+import CardInfoItem from '../CardInfoItem';
 
 function CardCountry({ flag, name, population, region, capital }) {
   return (
     <CardBox>
-      {flag} {name} {population} {region} {capital}
+      <CardImage src={flag} />
+      <CardBody>
+        <CardTitle>{name}</CardTitle>
+        <div>
+          <CardInfoItem title={'Population:'} value={population} />
+          <CardInfoItem title={'Region:'} value={region} />
+          <CardInfoItem title={'Capital:'} value={capital} />
+        </div>
+      </CardBody>
     </CardBox>
   );
 }

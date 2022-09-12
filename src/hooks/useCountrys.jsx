@@ -12,7 +12,7 @@ export const useDefaultCountrys = () => {
     dispatch(isLoading(true));
     res.then((data) => {
       const countrysElements = [];
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 8; i++) {
         countrysElements.push(data[i]);
       }
 
