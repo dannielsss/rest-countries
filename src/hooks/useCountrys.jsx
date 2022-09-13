@@ -7,8 +7,7 @@ import { getCountrys } from '../services/country';
 export const useCountrys = () => {
   const dispatch = useDispatch();
 
-  const getAllCountrys = () => {
-    const res = getCountrys();
+  const getAllCountrys = async () => {
     dispatch(isVisibleCountrys(false));
     dispatch(
       toggleAlert({
@@ -18,19 +17,19 @@ export const useCountrys = () => {
       })
     );
 
-    res.then((data) => {
+    try {
+      const countries = await getCountrys();
       const countrysElements = [];
       for (let i = 0; i < 8; i++) {
-        countrysElements.push(data[i]);
+        countrysElements.push(countries[i]);
       }
 
-      console.log(data);
-      // dispatch(setCountrys(data))
       dispatch(setCountrys(countrysElements));
-
       dispatch(isVisibleCountrys(true));
       dispatch(toggleAlert({ active: false }));
-    });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return { getAllCountrys };
