@@ -1,24 +1,24 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import { useCountrys } from '../../hooks/useCountrys';
+import { useCountries } from '../../hooks/useCountrys';
 
 import { ListCountryBox } from './styles';
 
 import CardCountry from '../CardCountry';
 
-function ListCountry() {
-  const visible = useSelector((state) => state.countrys.visibleCountrys);
-  const countrys = useSelector((state) => state.countrys.countrys);
-  const { getAllCountrys } = useCountrys();
+function ListCountries() {
+  const visible = useSelector((state) => state.countries.visibleCountries);
+  const countries = useSelector((state) => state.countries.countries);
+  const { getAllCountries } = useCountries();
   
   useEffect(() => {
-    getAllCountrys();
+    getAllCountries();
   }, []);
 
   return (
     <ListCountryBox>
-      {visible && countrys.map((country) => (
+      {visible && countries.map((country) => (
         <CardCountry
           flag={country.flags.png}
           name={country.name.official}
@@ -32,4 +32,4 @@ function ListCountry() {
   );
 }
 
-export default ListCountry;
+export default ListCountries;

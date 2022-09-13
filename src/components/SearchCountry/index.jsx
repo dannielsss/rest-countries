@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { setCountrys } from '../../reducers/countrysReducer';
+import { setCountries } from '../../reducers/countriesReducer';
 import { toggleAlert } from '../../reducers/alertReducer';
 
 import { Input } from './styles';
 
 import { searchCountrys } from '../../services/country';
-import { useCountrys } from '../../hooks/useCountrys';
+import { useCountries } from '../../hooks/useCountrys';
 
 function SearchCountry() {
   const [searchValue, setSearchValue] = useState('');
-  const { getAllCountrys } = useCountrys();
+  const { getAllCountries } = useCountries();
   const dispatch = useDispatch();
 
   const onSubmitForm = async (e) => {
@@ -27,8 +27,8 @@ function SearchCountry() {
       );
 
       try {
-        const searchContrysData = await searchCountrys(searchValue);
-        dispatch(setCountrys(searchContrysData));
+        const searchCountriesData = await searchCountrys(searchValue);
+        dispatch(setCountries(searchCountriesData));
         dispatch(toggleAlert({ active: false }));
       } catch (error) {
         if (error.response.status === 404) {
@@ -42,7 +42,7 @@ function SearchCountry() {
         }
       }
     } else {
-      getAllCountrys();
+      getAllCountries();
     }
   };
 

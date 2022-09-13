@@ -7,7 +7,7 @@ export const CardBox = styled.div`
   box-shadow: 0px 2px 5px #7a797950;
   border-radius: ${paddingCard};
   color: hsl(200, 15%, 8%);
-  height: 335px;
+  height: 370px;
 
   display: flex;
   flex-direction: column;

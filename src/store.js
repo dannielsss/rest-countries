@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import alertReducer from './reducers/alertReducer';
-import countrysReducer from './reducers/countrysReducer';
+import countriesReducer from './reducers/countriesReducer';
 
 export const store = configureStore({
   reducer: {
-    countrys: countrysReducer,
+    countries: countriesReducer,
     alert: alertReducer,
   },
 })

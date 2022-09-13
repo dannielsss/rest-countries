@@ -1,14 +1,14 @@
 import { useDispatch } from 'react-redux';
 import { toggleAlert } from '../reducers/alertReducer';
-import { isVisibleCountrys, setCountrys } from '../reducers/countrysReducer';
+import { isVisibleCountries, setCountries } from '../reducers/countriesReducer';
 
 import { getCountrys } from '../services/country';
 
-export const useCountrys = () => {
+export const useCountries = () => {
   const dispatch = useDispatch();
 
-  const getAllCountrys = async () => {
-    dispatch(isVisibleCountrys(false));
+  const getAllCountries = async () => {
+    dispatch(isVisibleCountries(false));
     dispatch(
       toggleAlert({
         type: 'loading',
@@ -19,18 +19,18 @@ export const useCountrys = () => {
 
     try {
       const countries = await getCountrys();
-      const countrysElements = [];
+      const countriesElements = [];
       for (let i = 0; i < 8; i++) {
-        countrysElements.push(countries[i]);
+        countriesElements.push(countries[i]);
       }
 
-      dispatch(setCountrys(countrysElements));
-      dispatch(isVisibleCountrys(true));
+      dispatch(setCountries(countriesElements));
+      dispatch(isVisibleCountries(true));
       dispatch(toggleAlert({ active: false }));
     } catch (error) {
       console.log(error);
     }
   };
 
-  return { getAllCountrys };
+  return { getAllCountries };
 };
