@@ -1,10 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { NavbarBox, NavbarTitle } from './styles';
 
 function Navbar() {
   return (
     <NavbarBox>
-      <NavbarTitle>Where in the world?</NavbarTitle>
+      <NavbarTitle>
+        <Link to={'/'}>Where in the world?</Link>
+      </NavbarTitle>
     </NavbarBox>
   );
 }

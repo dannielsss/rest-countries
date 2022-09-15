@@ -6,4 +6,5 @@ export const ListCountryBox = styled.div`
   gap: 40px;
   place-items: center;
   align-items: center;
+  justify-content: center;
 `
