@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import { useCountries } from '../../hooks/useCountrys';
+import { useCountries } from '../../hooks/useCountries';
 
 import { ListCountryBox } from './styles';
 

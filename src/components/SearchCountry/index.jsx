@@ -1,46 +1,17 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { setCountries } from '../../reducers/countriesReducer';
-import { toggleAlert } from '../../reducers/alertReducer';
 
 import { Input } from './styles';
-
-import { searchCountrys } from '../../services/country';
-import { useCountries } from '../../hooks/useCountrys';
+import { useCountries } from '../../hooks/useCountries';
 
 function SearchCountry() {
   const [searchValue, setSearchValue] = useState('');
-  const { getAllCountries } = useCountries();
-  const dispatch = useDispatch();
+  const { getAllCountries, searchOneCountries } = useCountries();
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
 
     if (searchValue) {
-      dispatch(
-        toggleAlert({
-          type: 'loading',
-          message: 'Loading...',
-          active: true,
-        })
-      );
-
-      try {
-        const searchCountriesData = await searchCountrys(searchValue);
-        dispatch(setCountries(searchCountriesData));
-        dispatch(toggleAlert({ active: false }));
-      } catch (error) {
-        if (error.response.status === 404) {
-          dispatch(
-            toggleAlert({
-              type: 'error',
-              message: 'Not Found Country',
-              active: true,
-            })
-          );
-        }
-      }
+      searchOneCountries(searchValue)
     } else {
       getAllCountries();
     }
