@@ -7,6 +7,7 @@ export const NotFoundBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   flex-direction: row;
   gap: 3rem;
 `;
@@ -14,11 +15,18 @@ export const NotFoundBox = styled.div`
 export const NotFoundContainer = styled.div`
   display: flex;
   flex-direction: column;
-`
+
+  @media screen and (max-width: 600px) {
+    align-items: center;
+  }
+`;
 
 export const NotFoundTitle = styled.h1`
   font-size: 3rem;
   font-weight: bold;
+  @media screen and (max-width: 600px) {
+    font-size: 2rem;
+  }
 `;
 
 export const NotFoundText = styled.p`
@@ -39,4 +47,8 @@ export const NotFoundLink = styled(Link)`
 
 export const NotFoundImage = styled.img`
   width: 300px;
-`
+
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
+`;
