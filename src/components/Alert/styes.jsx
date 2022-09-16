@@ -5,6 +5,9 @@ export const AlertBox = styled.div`
   padding: 20px;
   border-radius: 2px;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
   color: white;
   background: ${(props) =>
