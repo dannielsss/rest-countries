@@ -7,11 +7,14 @@ export const getCountrys = async () => {
     element.id = v4().slice(0, 16);
   });
   
-  console.log(res.data);
   return res.data;
 };
 
 export const searchCountrys = async (countryName) => {
   const res = await axios.get(`https://restcountries.com/v3.1/name/${countryName}`)
+  res.data.forEach(element => {
+    element.id = v4().slice(0, 16);
+  });
+  
   return res.data;
 }
