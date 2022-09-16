@@ -23,9 +23,9 @@ function ListCountries() {
           flag={country.flags.png}
           name={country.name.official}
           population={country.population}
-          region={country.region}
+          region={country.subregion}
           capital={country.capital}
-          key={country.flags.png}
+          key={country.id}
         />
       ))}
     </ListCountryBox>
