@@ -1,11 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CardBody, CardBox, CardImage, CardTitle } from './styles';
-
 import CardInfoItem from '../CardInfoItem';
 
-function CardCountry({ flag, name, population, region, capital }) {
+function CardCountry({ id, flag, name, population, region, capital }) {
+  const navigate = useNavigate();
+
   return (
-    <CardBox>
+    <CardBox onClick={() => navigate(`/country/${id}`)}>
       <CardImage src={flag} />
       <CardBody>
         <CardTitle>{name}</CardTitle>

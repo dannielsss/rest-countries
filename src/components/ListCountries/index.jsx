@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-
 import { useCountries } from '../../hooks/useCountries';
-
 import { ListCountryBox } from './styles';
-
 import CardCountry from '../CardCountry';
 
 function ListCountries() {
@@ -20,12 +17,13 @@ function ListCountries() {
     <ListCountryBox>
       {visible && countries.map((country) => (
         <CardCountry
+          id={country.ccn3}
           flag={country.flags.png}
           name={country.name.official}
           population={country.population}
           region={country.subregion}
           capital={country.capital}
-          key={country.id}
+          key={country.ccn3}
         />
       ))}
     </ListCountryBox>

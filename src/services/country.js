@@ -1,20 +1,22 @@
-import { v4 } from 'uuid';
 import axios from 'axios';
 
-export const getCountrys = async () => {
+export const getCountries = async () => {
   const res = await axios.get('https://restcountries.com/v3.1/all');
-  res.data.forEach(element => {
-    element.id = v4().slice(0, 16);
-  });
-  
+  console.log(res.data);
   return res.data;
 };
 
-export const searchCountrys = async (countryName) => {
-  const res = await axios.get(`https://restcountries.com/v3.1/name/${countryName}`)
-  res.data.forEach(element => {
-    element.id = v4().slice(0, 16);
-  });
-  
+export const searchCountries = async (countryName) => {
+  const res = await axios.get(
+    `https://restcountries.com/v3.1/name/${countryName}`
+  );
   return res.data;
-}
+};
+
+export const findCountry = async (countryId) => {
+  const res = await axios.get(
+    `https://restcountries.com/v3.1/alpha/${countryId}`
+  );
+  console.log(res.data);
+  return res.data[0];
+};

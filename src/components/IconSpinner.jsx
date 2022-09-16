@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default styled.div`
+const IconSpinner =styled.div`
   border: 4px solid white;
   border-left-color: transparent;
   border-radius: 50%;
@@ -18,3 +18,5 @@ export default styled.div`
     }
   }
 `
+
+export default IconSpinner;
