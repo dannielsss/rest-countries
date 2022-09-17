@@ -18,7 +18,7 @@ function ListCountries() {
       {visible && countries.map((country) => (
         <CardCountry
           id={country.ccn3}
-          flag={country.flags.png}
+          flag={country.flags.svg}
           name={country.name.official}
           population={country.population}
           region={country.subregion}

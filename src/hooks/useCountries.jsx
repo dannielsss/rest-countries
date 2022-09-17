@@ -86,10 +86,13 @@ export const useCountries = () => {
 
 export const useFindCountry = (countryId) => {
   const [country, setCountry] = useState({});
+  const [notfound, setNotfound] = useState(false);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const getCountry = async () => {
     dispatch(isVisibleCountries(false));
+    setLoading(true);
     setCountry({});
     dispatch(
       toggleAlert({
@@ -102,17 +105,17 @@ export const useFindCountry = (countryId) => {
     try {
       const res = await findCountry(countryId);
       dispatch(isVisibleCountries(true));
+      setLoading(false);
       dispatch(toggleAlert({ active: false }));
       setCountry(res);
     } catch (error) {
-      if (error.response.status === 404) {
-        dispatch(
-          toggleAlert({
-            type: 'error',
-            message: 'Not Found Country',
-            active: true,
-          })
-        );
+      if (error.response.status === 400) {
+        dispatch(isVisibleCountries(true));
+        dispatch(toggleAlert({ active: false }));
+        setLoading(false);
+
+        setNotfound(true);
+        setCountry({});
       }
     }
   };
@@ -121,5 +124,5 @@ export const useFindCountry = (countryId) => {
     getCountry();
   }, []);
 
-  return country;
+  return { country, notfound, loading };
 };
